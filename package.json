@@ -40,11 +40,10 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/strongly-recommended",
       "@vue/prettier",
       "@vue/typescript"
     ],
-    "rules": {},
     "parserOptions": {
       "parser": "@typescript-eslint/parser"
     },
