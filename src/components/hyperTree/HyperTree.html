@@ -1,0 +1,16 @@
+<div>
+  <RecycleScroller
+    class="scroller"
+    :items="list"
+    :item-size="32"
+    key-field="id"
+    v-slot="{ item }"
+  >
+    <div class="user">
+      {{ item.name }}
+    </div>
+  </RecycleScroller>
+  <div>
+    ---------
+  </div>
+</div>
