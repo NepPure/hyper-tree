@@ -17,6 +17,7 @@ export default class HyperTree extends Vue {
   length: number = 3;
   level: number = 3;
   selectNode: Node = new Node();
+  $Spin!: any;
 
   constructor() {
     super();
