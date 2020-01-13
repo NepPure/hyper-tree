@@ -13,6 +13,7 @@ export class NodeManager {
     parentNode: Node | null,
     index: number
   ): Node {
+    node.index = index;
     if (parentNode === null) {
       node.code = index.toString();
     } else {

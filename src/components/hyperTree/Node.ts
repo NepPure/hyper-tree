@@ -11,4 +11,5 @@ export class Node {
   index: number = 0;
   level: number = 0;
   show: boolean = true;
+  showChildren: boolean = true;
 }

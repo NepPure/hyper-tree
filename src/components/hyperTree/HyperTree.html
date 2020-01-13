@@ -1,18 +1,38 @@
 <Row>
   <Col span="12">
-  <RecycleScroller class="scroller" :items="list" :item-size="20" key-field="id" v-slot="{ item }">
-    <div class="user" :style="{ 'margin-left': item.level*5+'px' }">
-      <Icon type="ios-arrow-down" />level{{ item.level }}-{{ item.name }}</div>
+  <RecycleScroller class="scroller" :items="showNode" :item-size="20" key-field="id" v-slot="{ item }">
+    <div class="node" @click="nodeClick(item)" :style="{ 'margin-left': item.level*5+'px' }">
+      <Icon type="ios-arrow-forward" class="node-icon"
+        :style="{'transform': item.showChildren===true?'rotate(90deg)':'rotate(0deg)'}" />
+      level{{ item.level }}-{{ item.name }}</div>
   </RecycleScroller>
   </Col>
   <Col span="12">
   <Alert type="warning">模拟数据方法使用递归构造树节点，过大的数据量可能导致浏览器卡死，请酌情模拟</Alert>
   <Button @click="CreateTree">模拟数据</Button>
+  <br>
+
   根节点数量：<Input v-model="rootLength" />
   <br>
   每个节点数量：<Input v-model="length" />
   <br>
   层级深度：<Input v-model="level" />
   <br>
+  <br>
+  模拟节点数量：{{total}}
+  <br>
+  <Alert type="warning" v-if="total>100000">模拟节点超过十万个，浏览器很容易卡死，请谨慎点击模拟按钮</Alert>
+  <br>
+  展示节点数量：{{showNode.length}}
+  <br>
+  <br>
+  点击的节点：
+  <br>
+  {{selectNodeJson}}
+
+  <br>
+  <br>
+  思路：树结构扁平化，避免创建过多vue实例，只渲染视野内树节点。
   </Col>
+
 </Row>
