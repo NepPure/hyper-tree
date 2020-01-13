@@ -3,6 +3,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import VueVirtualScroller from "vue-virtual-scroller";
 import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
 import { Node } from "./Node";
+import { TreeMockHelper } from "./TreeMockHelper";
 
 Vue.use(VueVirtualScroller);
 
@@ -11,12 +12,25 @@ export default class HyperTree extends Vue {
   @Prop() private msg!: string;
 
   list: Node[] = [];
+  rootLength: number = 3;
+  length: number = 3;
+  level: number = 3;
 
   constructor() {
     super();
-    for (let index = 0; index < 100000; index++) {
-      this.list.push(new Node(`name-${index}`, `id-${index}`));
-    }
+  }
+
+  mounted() {
+    this.CreateTree();
+  }
+
+  CreateTree() {
+    let treeMockHelper = new TreeMockHelper();
+    this.list = treeMockHelper.CreateTree(
+      this.rootLength,
+      this.length,
+      this.level
+    );
   }
 }
 </script>
@@ -25,11 +39,11 @@ export default class HyperTree extends Vue {
 
 <style scoped>
 .scroller {
-  height: 200px;
+  height: 600px;
 }
 
 .user {
-  height: 30px;
+  height: 20px;
   padding: 0 12px;
   display: flex;
   align-items: center;

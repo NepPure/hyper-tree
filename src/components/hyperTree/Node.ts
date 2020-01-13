@@ -6,4 +6,9 @@ export class Node {
 
   id!: string;
   name!: string;
+  code!: string;
+  parentId!: string;
+  index: number = 0;
+  level: number = 0;
+  show: boolean = true;
 }
